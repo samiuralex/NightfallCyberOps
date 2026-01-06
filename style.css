@@ -1,0 +1,371 @@
+:root {
+    --bg-color: #050505;
+    --card-bg: #0b0f14;
+    /* Dark Steel */
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    /* Steel Grey */
+    --accent-color: #00e5ff;
+    /* Cyan */
+    --accent-dim: rgba(0, 229, 255, 0.1);
+    --border-color: #1e293b;
+    --font-heading: 'Rajdhani', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --scanline-color: rgba(0, 229, 255, 0.02);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+section {
+    scroll-margin-top: 100px;
+}
+
+/* Background Effects */
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            transparent 50%,
+            var(--scanline-color) 51%,
+            transparent 51%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9;
+}
+
+/* Navigation */
+.navbar {
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(5px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-color);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.logo .accent {
+    color: var(--accent-color);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+    z-index: 101;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    flex: 1;
+    width: 100%;
+}
+
+/* Page Headers */
+.page-header {
+    margin: 4rem 0 2rem 0;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.page-subtitle {
+    color: var(--accent-color);
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+}
+
+/* Typography & Content */
+h2 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin: 2rem 0 1rem 0;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+}
+
+ul {
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--text-secondary);
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Hero Section */
+.hero {
+    margin: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.glitch-text {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+.hero-sub {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    letter-spacing: 4px;
+}
+
+/* Cards / Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--accent-dim);
+}
+
+.card h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+}
+
+/* Buttons / Links */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background: var(--accent-dim);
+    box-shadow: 0 0 15px var(--accent-dim);
+}
+
+/* Footer & Legal */
+/* Footer & Legal */
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 1rem;
+    margin-top: auto;
+    background: #020202;
+    font-size: 0.8rem;
+    color: #555;
+    text-align: center;
+}
+
+.footer p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.legal-notice {
+    max-width: 800px;
+    margin: 0 auto 1rem auto;
+    border: 1px solid #222;
+    padding: 1rem;
+}
+
+.footer-nav {
+    margin-bottom: 1rem;
+}
+
+.footer-nav a {
+    color: #777;
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+    color: var(--accent-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .nav-container {
+        padding: 0.5rem 1rem;
+        /* Restore space-between for Logo (left) and Button (right) */
+        justify-content: space-between;
+    }
+
+    /* Restore text logo on mobile */
+    .logo {
+        display: block;
+        font-size: 1.2rem;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    /* Mobile Menu Dropdown */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(5, 5, 5, 0.98);
+        border-bottom: 1px solid var(--accent-color);
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #111;
+        width: 100%;
+        display: block;
+    }
+
+    .hero {
+        margin: 3rem 0;
+        text-align: center;
+    }
+
+    .glitch-text {
+        font-size: 2.5rem;
+    }
+
+    .page-header {
+        margin: 2rem 0 1rem 0;
+        text-align: center;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .grid {
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .card {
+        padding: 1.25rem;
+    }
+
+    .footer {
+        padding: 2rem 1rem;
+    }
+}
